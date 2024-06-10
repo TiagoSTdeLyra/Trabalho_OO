@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Recommend Books</h1>
+<form action="{{ url_for('recommend_book') }}" method="post">
+    <input type="text" name="genre" placeholder="Genre" required>
+    <button type="submit">Recommend Book</button>
+</form>
+{% if recommendation %}
+<h2>Recommendation: {{ recommendation }}</h2>
+{% endif %}
+{% endblock %}

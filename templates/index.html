@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Biblioteca de Livros</h1>
+{% if not books %}
+<p>Não há nenhum livro criado ainda. <a href="{{ url_for('login') }}">Clique aqui para adicionar livros.</a></p>
+{% else %}
+<ul>
+    {% for book in books %}
+    <li>{{ book.title }} by {{ book.author }} - {{ book.genre }}</li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('login') }}">Deseja adicionar mais livros?</a>
+{% endif %}
+{% endblock %}

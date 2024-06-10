@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área VIP</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ username }}!</h1>
+    <p>Você está na área VIP.</p>
+    <h2>Gerenciamento de Livros</h2>
+    <form action="{{ url_for('area_vip') }}" method="post">
+        <input type="hidden" name="book_id" value="">
+        <input type="text" name="title" placeholder="Título" required>
+        <input type="text" name="author" placeholder="Autor" required>
+        <input type="text" name="genre" placeholder="Gênero" required>
+        <button type="submit" name="add_book">Adicionar Livro</button>
+    </form>
+    <ul>
+        {% for book in books %}
+        <li>
+            {{ book.title }} by {{ book.author }} - {{ book.genre }}
+            <form action="{{ url_for('area_vip') }}" method="post">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <input type="text" name="title" placeholder="Título" value="{{ book.title }}" required>
+                <input type="text" name="author" placeholder="Autor" value="{{ book.author }}" required>
+                <input type="text" name="genre" placeholder="Gênero" value="{{ book.genre }}" required>
+                <button type="submit" name="edit_book">Editar</button>
+                <button type="submit" name="delete_book">Excluir</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>
